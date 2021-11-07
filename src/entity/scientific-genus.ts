@@ -9,10 +9,13 @@ import {
 
 import { TableName } from '../config/table-name'
 
-@Entity(TableName.SCIENTIFIC_SUB_FAMILY)
-export class ScientificSubFamilyEntity extends BaseEntity {
+@Entity(TableName.SCIENTIFIC_GENUS)
+export class ScientificGenusEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: Number;
+
+    @Column()
+    subFamilyId: Number;
 
     @Column()
     name: String;

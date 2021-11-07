@@ -9,10 +9,16 @@ const router = express.Router();
 // App: Image Group //
 router.post('/upload-image', multer.single("image_file"), ImageController.uploadImage)
 
-// Manage Plant Data : Subfamily //
+// Manage Plant Data : Subfamily (อนุวงศ์) //
 router.get('/plant-data/subfamily/list', PlantDataController.userGetSubFamilyList)
 router.post('/plant-data/subfamily/add', PlantDataController.userAddSubFamily)
-//router.put('/plant-data/subfamily/edit/:id', PlantDataController.userEditSubFamily)
-//router.delete('/plant-data/subfamily/delete/:id', PlantDataController.userDeleteSubFamily)
+router.put('/plant-data/subfamily/edit/:id', PlantDataController.userEditSubFamily)
+router.delete('/plant-data/subfamily/delete/:id', PlantDataController.userDeleteSubFamily)
+
+// Manage Plant Data : Subfamily (วงศ์) //
+router.get('/plant-data/genus/list', PlantDataController.userGetGenusList)
+router.post('/plant-data/genus/add', PlantDataController.userAddGenus)
+router.put('/plant-data/genus/edit/:id', PlantDataController.userEditGenus)
+router.delete('/plant-data/genus/delete/:id', PlantDataController.userDeleteGenus)
 
 export default router;

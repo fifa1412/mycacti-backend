@@ -24,8 +24,6 @@ async function initApp() {
   console.log(`Start Environment: ${environment}`);
 }
 
-
-
 async function initFirebaseAdmin() {
   const serviceAccount = require("../my-cacti-273be-firebase-adminsdk-wobty-bceb953350.json");
   firebaseAdmin.initializeApp({

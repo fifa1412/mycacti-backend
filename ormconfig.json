@@ -1,0 +1,25 @@
+[
+    {
+        "name": "dev",
+        "type": "mysql",
+        "host": "203.159.93.190",
+        "port": 3306,
+        "username": "fifa1412",
+        "password": "pkOne713",
+        "database": "mycacti",
+        "synchronize": false,
+        "logging": true,
+        "entities": [
+            "src/entity/**/*.{ts,js}"
+        ],
+        "migrations": ["src/migration/**/*.ts"],
+        "subscribers": ["src/subscriber/**/*.ts"],
+        "seeds": ["src/seed/**/*{.ts,.js}"],
+        "factories": ["src/factory/**/*{.ts,.js}"],
+        "cli": {
+            "entitiesDir": "src/entity",
+            "migrationsDir": "src/migration",
+            "subscribersDir": "src/subscriber"
+        }
+    }
+]

@@ -145,3 +145,24 @@ export const validateUserDeleteGenus = async (req) =>{
     return returnObject;
 
 } 
+
+
+export const validateUserAddSpecies = async (req) =>{
+    let errorCodeList = [];
+    
+    let { genusId = null, species = null, variety = null, 
+        forma = null, cultivation = null, fieldNumber = null, commonName = null, note = null } = req.body;
+
+    if(await IsExist.genusId(genusId) == false){
+        errorCodeList.push(`genusId(Int): is not found`)
+    }
+    if(Validate.isEmpty(species) == true){
+        errorCodeList.push(`species(String): is required`)
+    }
+    
+    // Response Back To Controller //
+    let returnObject = {success: true, errorCodeList: errorCodeList};
+    if(errorCodeList.length != 0){returnObject.success = false;}
+    return returnObject;
+
+} 

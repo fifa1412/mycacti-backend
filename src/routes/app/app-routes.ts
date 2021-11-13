@@ -15,10 +15,14 @@ router.post('/plant-data/subfamily/add', PlantDataController.userAddSubFamily)
 router.put('/plant-data/subfamily/edit/:id', PlantDataController.userEditSubFamily)
 router.delete('/plant-data/subfamily/delete/:id', PlantDataController.userDeleteSubFamily)
 
-// Manage Plant Data : Subfamily (วงศ์) //
+// Manage Plant Data : Genus (วงศ์) //
 router.get('/plant-data/genus/list', PlantDataController.userGetGenusList)
 router.post('/plant-data/genus/add', PlantDataController.userAddGenus)
 router.put('/plant-data/genus/edit/:id', PlantDataController.userEditGenus)
 router.delete('/plant-data/genus/delete/:id', PlantDataController.userDeleteGenus)
+
+// Manage Plant Data : Species (วงศ์) //
+router.get('/plant-data/species/list', PlantDataController.userGetSpeciesList)
+router.post('/plant-data/species/add', PlantDataController.userAddSpecies)
 
 export default router;

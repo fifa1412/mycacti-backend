@@ -6,6 +6,7 @@ import * as AppValidator from '../validator/app-validator';
 import { TableName } from '../config/table-name';
 
 import * as IsExist from '../services/helper/exist-object-service';
+import { ScientificSpeciesEntity } from '../entity/scientific-species';
 
 
 ////////// SUB FAMILY AREA //////////
@@ -190,6 +191,55 @@ export const userDeleteGenus = async (req, res) =>{
             success: true,
             message: "User delete genus successfully",
             data: null
+        })
+    );
+}
+
+
+
+////////// SPECIES AREA //////////
+////////// SPECIES AREA //////////
+////////// SPECIES AREA //////////
+
+export const userGetSpeciesList = async (req, res) =>{
+    const genusList = await ScientificSubFamilyEntity.getRepository().query(
+        `SELECT * FROM ${TableName.SCIENTIFIC_SPECIES} as scientific_species ORDER BY scientific_species.created DESC`);
+
+    return res.status(200).send(
+        await ResponseEntity({ 
+            success: true,
+            message: "User get species list successfully",
+            data: genusList
+        })
+    );
+}
+
+export const userAddSpecies = async (req, res) =>{
+    let { genusId = null, species = null, variety = null, 
+        forma = null, cultivation = null, fieldNumber = null, commonName = null, note = null } = req.body;
+
+    // validate input //
+    let validate = await AppValidator.validateUserAddSpecies(req)
+    if(validate.success == false){
+        return res.status(400).send(await ResponseEntity({ success: false, message: "Input Validation Error", data: validate.errorCodeList, code: 400}));
+    }
+
+    let newSpeciesObject = new ScientificSpeciesEntity();
+        newSpeciesObject.genusId = genusId
+        newSpeciesObject.species = species
+        newSpeciesObject.variety = variety
+        newSpeciesObject.forma = forma
+        newSpeciesObject.cultivation = cultivation
+        newSpeciesObject.fieldNumber = fieldNumber
+        newSpeciesObject.commonName = commonName
+        newSpeciesObject.note = note
+    const insertObject = await ScientificSpeciesEntity.save(newSpeciesObject);
+
+    return res.status(200).send(
+        await ResponseEntity({ 
+            success: true,
+            message: "User add species successfully",
+            data: insertObject
         })
     );
 }
